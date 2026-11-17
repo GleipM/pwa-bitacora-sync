@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2d4a3e">
+  <title>Bitácora Sync - Mantenimiento Offline</title>
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" href="./icons/icon-192.png" type="image/png">
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Bitácora de Mantenimiento</h1>
+      <p class="subtitulo">Órdenes de servicio con respaldo offline</p>
+    </div>
+    <span id="indicador-conexion" class="pill conectado">Conectado</span>
+  </header>
+
+  <main>
+    <section class="panel">
+      <h2>Nueva Orden de Servicio</h2>
+      <form id="form-orden">
+        <input type="text" id="equipo" placeholder="Equipo o área (ej. Compresor B-12)" required>
+        <select id="prioridad" required>
+          <option value="baja">Prioridad baja</option>
+          <option value="media" selected>Prioridad media</option>
+          <option value="alta">Prioridad alta</option>
+        </select>
+        <textarea id="observaciones" placeholder="Observaciones del técnico..." required></textarea>
+        <button type="submit">Registrar Orden</button>
+      </form>
+    </section>
+
+    <section class="panel">
+      <div class="encabezado-cola">
+        <h2>Cola Local (IndexedDB)</h2>
+        <div class="contadores">
+          <span id="contador-pendientes" class="contador en-espera">0 en espera</span>
+          <span id="contador-enviadas" class="contador enviada">0 enviadas</span>
+        </div>
+        <button id="btn-limpiar" type="button">Limpiar Enviadas</button>
+      </div>
+      <ul id="lista-cola"></ul>
+    </section>
+  </main>
+
+  <script src="./idb-store.js"></script>
+  <script src="./main.js"></script>
+</body>
+</html>
